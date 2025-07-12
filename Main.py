@@ -1,7 +1,8 @@
-import discord, json,logging, os, random
+import discord, json,logging, os, random, emoji
 from discord.ext import commands
 from discord import app_commands
 from weather import Weather
+from rps import rps
 
 with open("Api.json", "r") as API:
 	APIs=json.load(API)["api"][0]
@@ -12,6 +13,7 @@ with open("Answers.json", "r") as answer:
 handler= logging.FileHandler(filename="discord.log", encoding="utf-8", mode="w")
 intents=discord.Intents.all()
 
+pending_requests={}
 
 #events
 class myBot(commands.Bot):
@@ -61,21 +63,45 @@ class myBot(commands.Bot):
 			
 bot= myBot(command_prefix="/", intents=intents)
 
-#commands
+#button function
 
+
+
+
+#commands
 @bot.tree.command(name="botofanswers", description="Got a question but no answer? Don’t worry Arthur’s here! Ask now and get the answer you need!")
 async def botofanswers(interaction: discord.Interaction, question: str):
-	await interaction.response.send_message(f"The question | {question}\n\n{random.choice(answers)}")
+	await interaction.response.defer()
+	the_respond=discord.Embed()
+	the_respond.add_field(name=f"{question}", value=random.choice(answers), inline=False)
+	await interaction.followup.send(embed=the_respond)
 	
 @bot.tree.command(name="weather", description="Arthur know the weather of every city don't ask why now ask Arthor and he will give it to you")
 async def weathercommand(interaction: discord.Interaction, city: str):
+	await interaction.response.defer()
 	theWeather=Weather(city)
 	result=theWeather.weather()
 	if result!=False:
-		await interaction.response.send_message(f"Country: {result["sys"]["country"]} \n\nCity Name: {result["name"]}\n\nWeather: {result["weather"][0]["description"]}\n\nHumidity: {result["main"]["humidity"]}%\n\nTemperature: {int(result["main"]["temp"]-273)}C")
+		flag=emoji.emojize(f":flag_{result["sys"]["country"].lower()}:")
+		the_respond=discord.Embed(title="**Weather**", description=f"Country: {result["sys"]["country"]} {flag}\n\nCity Name: {result["name"]}\n\nWeather: {result["weather"][0]["description"]}\n\nWind Speed: {result["wind"]["speed"]}Km/s\n\nHumidity: {result["main"]["humidity"]}%\n\nTemperature: {int(result["main"]["temp"]-273)}°C")
+		await interaction.followup.send(embed=the_respond)
 	else:
-		await interaction.response.send_message(f"{city} is not a City please enter a City name")
-		
+		await interaction.followup.send(f"{city} is not a City please enter a City name", ephemeral=True)
+@bot.tree.command(name="rps", description="Rock paper scissors a classic game play against Arthur and see your luck")
+async def rpscommand(interaction: discord.Interaction, play: str):
+	await interaction.response.defer()
+	
+	call=rps(play)
+	result=call.function()
+	if result!= None:
+		embed=discord.Embed(title=result[0], description=f"{interaction.user.name.capitalize()}: {result[2]}\nArthur: {result[1]}")
+		await interaction.followup.send(embed=embed)
+	else:
+		await interaction.followup.send("Please enter a valid play (rock, paper, scissors)", ephemeral=True)
+
+#@bot.tree.command(name="log", description="log")
+#async def log(interaction: discord.Interaction):
+#	await interaction.response.send_message(interaction)
 
 
 bot.run(discordToken)
