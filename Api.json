@@ -1,0 +1,8 @@
+{
+	"api": [
+		{
+			"discordTokenCode": "ENTER YOUR DISCORD TOKEN BOT",
+			"weatherapi":"ENTER YOUR OPENWEATHER API"
+		}
+	]
+}
