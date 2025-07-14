@@ -7,17 +7,17 @@ This is my first major project, so there might be bugs or areas for improvement.
  * Server Economy: A built-in currency and banking system for users.
  * Simple Games: Play classic games against the bot.
  * Moderation Tools: A suite of commands to help server moderators.
-🚀 Installation & Setup
+# 🚀 Installation & Setup
 Follow these steps to get Arthur running on your own server.
 1. Prerequisites
  * You must have Python 3.8 or newer installed.
  * You should be familiar with cloning a Git repository.
 2. Clone the Repository
 Open your terminal or command prompt and run the following command to download the files:
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/sajadbaster/Arthur-discordbot
+cd Arthur-discordbot
 
-(Remember to replace your-username and your-repo-name with your actual GitHub details!)
+
 3. Install Dependencies
 Install all the required Python libraries by running:
 pip install -r requirements.txt
@@ -33,7 +33,7 @@ The bot needs API keys to function.
 You're all set! Start the bot with this command:
 python Main.py
 
-🤖 Commands
+# 🤖 Commands
 Here is a list of the primary commands available:
 | Command | Description |
 |---|---|
@@ -51,4 +51,3 @@ Here is a list of the primary commands available:
 | /unban <user_id> | Unbans a user using their unique user ID. |
 | /clear <amount> | Deletes a specified number of messages from the current channel. |
 <br>
-Great job getting this far, Sajad! This new README.md format will make your project look very professional. Keep up the awesome work!
