@@ -29,7 +29,10 @@
 8. **moderation commands:**
    Arthur have ability to use moderation commands like (mute, unmute,kick,ban,unban,clear)
 
-
+# installation & setup
+  download every file in GitHub page and open terminal and run command 
+```pip install -r requirements.txy```
+  and after that get the APIs of openweather website and discord token from discord
 
 
 # important note
