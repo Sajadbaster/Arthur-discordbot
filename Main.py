@@ -258,4 +258,4 @@ async def log(interaction: discord.Interaction, user: discord.User):
 	await interaction.response.send_message(f"{interaction}\n\n{user.bot}")
 
 
-bot.run(discordToken)
+bot.run(discordToken, log_handler=handler, log_level,logging.DEBUG)
