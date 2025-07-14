@@ -31,7 +31,7 @@
 
 # installation & setup
   download every file in GitHub page and open terminal and run command 
-```pip install -r requirements.txy```
+```pip install -r requirements.txt```
   and after that get the APIs of openweather website and discord token from discord
 
 
