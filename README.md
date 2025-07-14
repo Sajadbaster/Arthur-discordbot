@@ -14,13 +14,17 @@ Follow these steps to get Arthur running on your own server.
  * You should be familiar with cloning a Git repository.
 2. Clone the Repository
 Open your terminal or command prompt and run the following command to download the files:
+```
 git clone https://github.com/sajadbaster/Arthur-discordbot
 cd Arthur-discordbot
+```
 
 
 3. Install Dependencies
 Install all the required Python libraries by running:
+```
 pip install -r requirements.txt
+```
 
 4. Configure Your Keys
 The bot needs API keys to function.
