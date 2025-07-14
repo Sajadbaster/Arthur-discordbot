@@ -96,7 +96,7 @@ async def rpscommand(interaction: discord.Interaction, play: str):
 		bank_account.add_Money(result[-1])
 		await interaction.followup.send(embed=embed)
 	else:
-		await interaction.response.send_message("Please enter a valid play (rock, paper, scissors)")
+		await interaction.followup.send("Please enter a valid play (rock, paper, scissors)")
 		
 
 @bot.tree.command(name="rdice", description="Arthur have a magical dice let's use it!")
