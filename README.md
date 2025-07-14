@@ -1,40 +1,54 @@
-# Arthur Discord Bot
+Arthur Discord Bot
+Arthur Bot is a multi-purpose Discord bot built with discord.py. It's designed to be a helpful and fun addition to any server.
+This is my first major project, so there might be bugs or areas for improvement. All feedback is welcome!
+✨ Features
+ * Weather Forecasts: Get the current weather for any city.
+ * Magic 8-Ball: Have a question? Get a mysterious answer from the bot.
+ * Server Economy: A built-in currency and banking system for users.
+ * Simple Games: Play classic games against the bot.
+ * Moderation Tools: A suite of commands to help server moderators.
+🚀 Installation & Setup
+Follow these steps to get Arthur running on your own server.
+1. Prerequisites
+ * You must have Python 3.8 or newer installed.
+ * You should be familiar with cloning a Git repository.
+2. Clone the Repository
+Open your terminal or command prompt and run the following command to download the files:
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
 
-**Arthur Bot:** Is a Discord bot do multi tasks and commands and it use 'discord.py' python library and many other features like (solving math questions, telling weather of any city, having a database of money and currency inside the bot, some simple games)
+(Remember to replace your-username and your-repo-name with your actual GitHub details!)
+3. Install Dependencies
+Install all the required Python libraries by running:
+pip install -r requirements.txt
 
-# **The commands**
+4. Configure Your Keys
+The bot needs API keys to function.
+ * Find the Api.template.json file in the project.
+ * Make a copy of it and rename the copy to Api.json.
+ * Open Api.json and fill in your unique keys:
+   * discordTokenCode: Get this from the Discord Developer Portal.
+   * weatherapi: Get this from the OpenWeatherMap website.
+5. Run the Bot
+You're all set! Start the bot with this command:
+python Main.py
 
-
-1. **Weather command:**
-   Wanna know what is the weather in a city? Don't worry Arthur is here to help you he knows the weather of every city, how? Because why not it use'openweather' API to get the info. to use the command send '/weather <city name>' 
-
-2. **botofanswers:**
-   You jave a question and don't know the answer? Arthur's here to help you answering the questions just ask by sending '/botofanswers <your question>'
-   
-3. **profile command:**
-   from the name it display info about the user from the username, userID, money inside bot. to use it  send '/profile' or '/profile <user>' to check other user profile 
-
-4. **mba command:**
-   command to make yourself a bank account inside Arthur database (it's not real) to use it send '/mba'
-
-5. **Game:**
-   there's only one game (got too lazy to make more) play rock paper scissors with Arthur by sending '/rps <your play>'
-
-6. **give-money:**
-   feel generous today? Then give money to people!. to use it send '/give-money <amount of money to give> <the user to send>'
-
-7. **rdice:**
-   Arthur have a magical dice let's use it!. to use it send '/rdice <minimum number default 1> <maximum number default 6>'
-
-8. **moderation commands:**
-   Arthur have ability to use moderation commands like (mute, unmute,kick,ban,unban,clear)
-
-# installation & setup
-  download every file in GitHub page and open terminal and run command 
-```pip install -r requirements.txt```
-  and after that get the APIs of openweather website and discord token from discord
-
-
-# important note
-
-**This bot is the first project from me and it may includes problems, unoptimization functions, bugs, if you have something to say or recommendation just say it in the comments :)**
+🤖 Commands
+Here is a list of the primary commands available:
+| Command | Description |
+|---|---|
+| /weather <city> | Shows the current weather conditions for the specified city. |
+| /botofanswers <question> | Ask a question and receive a wise, or perhaps witty, answer. |
+| /profile [user] | Displays your profile or the profile of a mentioned user, showing money and user ID. |
+| /mba | Creates a new bank account for you in the bot's database. |
+| /rps <play> | Play a game of Rock, Paper, Scissors against Arthur. Your play can be rock, paper, or scissors. |
+| /give-money <amount> <user> | Feel generous? Give some of your in-bot money to another user. |
+| /rdice [min] [max] | Rolls a magical die. You can specify a minimum and maximum number. Defaults to 1-6. |
+| /mute <user> <time> [reason] | Mutes a user for a specified number of minutes. |
+| /unmute <user> | Unmutes a previously muted user. |
+| /kick <user> [reason] | Kicks a user from the server. |
+| /ban <user> [reason] | Bans a user from the server. |
+| /unban <user_id> | Unbans a user using their unique user ID. |
+| /clear <amount> | Deletes a specified number of messages from the current channel. |
+<br>
+Great job getting this far, Sajad! This new README.md format will make your project look very professional. Keep up the awesome work!
