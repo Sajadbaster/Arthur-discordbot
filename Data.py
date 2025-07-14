@@ -3,16 +3,16 @@ import sqlite3
 connection=sqlite3.connect("Info.db")
 cursor=connection.cursor()
 cursor.execute("create table if not exists Bank(name text not null, money integer default 0, id interger primary key)")
-def Check(id):
-	cursor.execute("select id from Bank where id= ?", (id,))
-	check=cursor.fetchone()
-	return check
-	
+
 	
 class BankData:
 	def __init__(self, userID, name):
 		self.userID=userID
 		self.name=name
+ def Check(self, id):
+	cursor.execute("select id from Bank where id= ?", (id,))
+	check=cursor.fetchone()
+	return check
 	def create_bank(self):
 		check=Check(self.userID)
 		if check == None :
