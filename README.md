@@ -1,4 +1,4 @@
-Arthur Discord Bot
+# Arthur Discord Bot
 Arthur Bot is a multi-purpose Discord bot built with discord.py. It's designed to be a helpful and fun addition to any server.
 This is my first major project, so there might be bugs or areas for improvement. All feedback is welcome!
 ✨ Features
