@@ -14,7 +14,6 @@ with open("Answers.json", "r") as answer:
 handler= logging.FileHandler(filename="discord.log", encoding="utf-8", mode="w")
 intents=discord.Intents.all()
 
-ownerID=834856531693797438
 
 #events
 
@@ -38,7 +37,6 @@ class myBot(commands.Bot):
 			"im sad": "https://youtu.be/QuNhTLVgV2Y\n\nCome and let's be sad and cry together ",
 			"i'm sad": "https://youtu.be/QuNhTLVgV2Y\n\nCome and let's be sad and cry together",
 			"hi comrade": "Hello Comrade",
-			"fuck you": "Fuck you you piece of shit",
 			}
 
 		content= message.content.lower()
@@ -248,14 +246,10 @@ async def kick(interaction: discord.Interaction, member: discord.Member,*, reaso
 
 @bot.tree.command(name="clear", description="Clear the previous messages")
 @app_commands.checks.has_permissions(manage_messages=True)
-async def clear(interaction: discord.Interaction, amout:int=1):
+async def clear(interaction: discord.Interaction, amount:int=1):
 	await interaction.response.defer(ephemeral=True)
-	await interaction.channel.purge(limit=amout)
-	await interaction.followup.send(embed=discord.Embed(title="clearing successfully done", description=f"{amout} message is deleted"))
-
-@bot.tree.command(name="log", description="log")
-async def log(interaction: discord.Interaction, user: discord.User):
-	await interaction.response.send_message(f"{interaction}\n\n{user.bot}")
+	await interaction.channel.purge(limit=amount)
+	await interaction.followup.send(embed=discord.Embed(title="clearing successfully done", description=f"{amount} message is deleted"))
 
 
 bot.run(discordToken, log_handler=handler, log_level,logging.DEBUG)
