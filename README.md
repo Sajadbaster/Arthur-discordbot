@@ -54,4 +54,5 @@ Here is a list of the primary commands available:
 | /ban <user> [reason] | Bans a user from the server. |
 | /unban <user_id> | Unbans a user using their unique user ID. |
 | /clear <amount> | Deletes a specified number of messages from the current channel. |
+| /gamble <amount> | Feeling lucky? Wager an amount of your in-bot currency for a chance to win big! |
 <br>
