@@ -12,8 +12,18 @@ with open("Answers.json", "r") as answer:
 	answers=json.load(answer)["Answers"]
 
 handler= logging.FileHandler(filename="discord.log", encoding="utf-8", mode="w")
-intents=discord.Intents.all()
+intents=discord.Intents.default()
+intents.messages=True
+intents.message_content=True
+intents.members=True
+intents.guilds=True
+intents.guild_messages=True
+intents.bans=True
+intents.dm_messages=True
 
+
+
+ownerID=834856531693797438
 
 #events
 
@@ -37,6 +47,7 @@ class myBot(commands.Bot):
 			"im sad": "https://youtu.be/QuNhTLVgV2Y\n\nCome and let's be sad and cry together ",
 			"i'm sad": "https://youtu.be/QuNhTLVgV2Y\n\nCome and let's be sad and cry together",
 			"hi comrade": "Hello Comrade",
+			"fuck you": "Fuck you you piece of shit",
 			}
 
 		content= message.content.lower()
@@ -192,7 +203,7 @@ async def unmute(interaction: discord.Interaction, member: discord.Member):
 			await interaction.followup.send(embed=discord.Embed(title=f"{member.mention} has been unmuted"))
 		else:
 			await interaction.followup.send(embed=discord.Embed(title="This member isn't muted"))
-	except Exception as e:
+	except:
 		await interaction.followup.send(embed=discord.Embed(title="I don't have permission and high role to do that"))
 
 
@@ -210,7 +221,7 @@ async def ban(interaction: discord.Interaction, member: discord.Member,*, reason
 			await member.ban(reason=reason)
 			await member.send(embed=discord.Embed(title="You have been banned", description=reason))
 			await interaction.followup.send(embed=discord.Embed(title=f"{member.mention} has been banned"))
-	except Exception as e:
+	except:
 		await interaction.followup.send(embed=discord.Embed(title="I don't have permission and high role to do that"))
 
 @bot.tree.command(name="unban", description="unban people you forgive")
@@ -222,7 +233,7 @@ async def unban(interaction: discord.Interaction, userid: str,*, reason:str="For
 		await interaction.guild.unban(member)
 		await member.send(embed=discord.Embed(title="You have been unbanned", description=reason))
 		await interaction.followup.send(embed=discord.Embed(title=f"{member.mention} has been unbanned", description=reason))
-	except Exception as e:
+	except:
 		await interaction.followup.send(embed=discord.Embed(title="I don't have permission and high role to do that"))
 
 
@@ -240,16 +251,27 @@ async def kick(interaction: discord.Interaction, member: discord.Member,*, reaso
 			await member.kick(reason=reason)
 			await member.send(embed=discord.Embed(title="You have been kicked", description=reason))
 			await interaction.followup.send(embed=discord.Embed(title=f"{member.mention} has been kicked"))
-	except Exception as e:
+	except:
 		await interaction.followup.send(embed=discord.Embed(title="I don't have permission and high role to do that"))
 
 
 @bot.tree.command(name="clear", description="Clear the previous messages")
 @app_commands.checks.has_permissions(manage_messages=True)
-async def clear(interaction: discord.Interaction, amount:int=1):
+async def clear(interaction: discord.Interaction, amout:int=1):
 	await interaction.response.defer(ephemeral=True)
-	await interaction.channel.purge(limit=amount)
-	await interaction.followup.send(embed=discord.Embed(title="clearing successfully done", description=f"{amount} message is deleted"))
+	await interaction.channel.purge(limit=amout)
+	await interaction.followup.send(embed=discord.Embed(title="clearing successfully done", description=f"{amout} message is deleted"))
 
 
-bot.run(discordToken, log_handler=handler, log_level,logging.DEBUG)
+@bot.tree.command(name="gamble", description="let's go gambling")
+async def gambling(interaction: discord.Interaction, bet:int):
+	data=BankData(interaction.user.id, interaction.user.name)
+	await interaction.response.defer()
+	if bet>=0:
+		gamble=data.gambling(bet)
+		user_money=data.get_info()[1]
+		await interaction.followup.send(embed=discord.Embed(title=gamble, description=f"You have {user_money}$"))
+	else:
+		await interaction.followup.send(embed=discord.Embed(title="Please enter a positive value"))
+
+bot.run(discordToken, log_handler=handler, log_level=logging.DEBUG)

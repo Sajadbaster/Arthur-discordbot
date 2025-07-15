@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, random
 
 connection=sqlite3.connect("Info.db")
 cursor=connection.cursor()
@@ -59,3 +59,22 @@ class BankData:
 		cursor.execute("select * from Bank where id= ?", (self.userID,))
 		theData= cursor.fetchone()
 		return theData
+		
+	def gambling(self, amount):
+		check=Check(self.userID)
+		if check==None:
+			return f"<@{self.userID}>You don't have bank account", 0
+		else:
+			cursor.execute("select money from Bank where id= ?", (self.userID,))
+			user_money=cursor.fetchone()[0]
+			if amount<= user_money:
+				user_money=int(user_money - amount)
+				random_result=random.choices([0,25,50,75,125,150,175,200,250,300], weights=[2,8, 15,20,20,11,11,10,2,1], k=1)[0]
+				gambling_result=amount *((random_result)/100)
+				result= user_money+gambling_result
+				cursor.execute("update Bank set money =? where id=?", (result, self.userID))
+				connection.commit()
+				return f"<@{self.userID}> got {random_result}% of it money back" 
+			else:
+				return "You don't have enough money"
+				
